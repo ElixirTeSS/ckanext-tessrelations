@@ -7,10 +7,12 @@ import logging
 from sqlalchemy import Table
 from sqlalchemy import Column
 from sqlalchemy import types
+from sqlalchemy.engine.reflection import Inspector
+
 
 from ckan import model
 
-from ckan.model.meta import metadata, mapper, Session
+from ckan.model.meta import metadata, mapper, Session, engine
 from ckan.model.types import make_uuid
 from ckan.model.domain_object import DomainObject
 
@@ -24,11 +26,11 @@ def setup():
     if material_event_table is None:
         define_tables()
 
-        if not material_event_table.exists(): # Blows up
+        if not material_event_table.exists():
            log.debug("Creating material <-> event table.")
            material_event_table.create()
 
-        if not material_node_table.exists(): # Blows up
+        if not material_node_table.exists():
             log.debug("Creating material <-> node table.")
             material_node_table.create()
 
@@ -56,6 +58,13 @@ def define_tables():
 
     mapper(TessMaterialNode, material_node_table)
 
+    # Attempt to gain access to the group table
+    #inspector = Inspector.from_engine(engine)
+    #columns = inspector.get_columns('group')
+    tess_group_table = Table('group',metadata,extend_existing=True)
+    mapper(TessGroup, tess_group_table)
+
+
 
 class TessRelation(DomainObject):
     # This is a separate class from which the others inherit in case we need some
@@ -66,6 +75,10 @@ class TessMaterialEvent(TessRelation):
     pass
 
 class TessMaterialNode(TessRelation):
+    pass
+
+# Group table with group type set to 'node'
+class TessGroup(DomainObject):
     pass
 
 
