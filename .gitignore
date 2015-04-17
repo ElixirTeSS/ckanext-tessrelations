@@ -42,3 +42,6 @@ coverage.xml
 docs/_build/
 
 out
+.travis.yml
+.coveragerc
+.idea

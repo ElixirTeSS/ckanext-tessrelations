@@ -1,33 +1,3 @@
-.. You should enable this project on travis-ci.org and coveralls.io to make
-   these badges work. The necessary Travis and Coverage config files have been
-   generated for you.
-
-.. image:: https://travis-ci.org/ElixirUK/ckanext-tessrelations.svg?branch=master
-    :target: https://travis-ci.org/ElixirUK/ckanext-tessrelations
-
-.. image:: https://coveralls.io/repos/ElixirUK/ckanext-tessrelations/badge.png?branch=master
-  :target: https://coveralls.io/r/ElixirUK/ckanext-tessrelations?branch=master
-
-.. image:: https://pypip.in/download/ckanext-tessrelations/badge.svg
-    :target: https://pypi.python.org/pypi//ckanext-tessrelations/
-    :alt: Downloads
-
-.. image:: https://pypip.in/version/ckanext-tessrelations/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-tessrelations/
-    :alt: Latest Version
-
-.. image:: https://pypip.in/py_versions/ckanext-tessrelations/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-tessrelations/
-    :alt: Supported Python versions
-
-.. image:: https://pypip.in/status/ckanext-tessrelations/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-tessrelations/
-    :alt: Development Status
-
-.. image:: https://pypip.in/license/ckanext-tessrelations/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-tessrelations/
-    :alt: License
-
 =============
 ckanext-tessrelations
 =============
