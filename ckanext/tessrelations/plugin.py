@@ -4,8 +4,8 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
 
-from ckanext.tessrelations.model import setup as model_setup
-from ckanext.tessrelations.model import TessMaterialNode, TessMaterialEvent
+from ckanext.tessrelations.model.tables import setup as model_setup
+from ckanext.tessrelations.model.tables import TessMaterialNode, TessMaterialEvent
 
 log = logging.getLogger(__name__)
 
