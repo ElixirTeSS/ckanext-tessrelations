@@ -17,13 +17,15 @@ from ckan.model.domain_object import DomainObject
 log = logging.getLogger(__name__)
 
 # http://docs.sqlalchemy.org/en/rel_0_8/orm/extensions/declarative.html
-#from sqlalchemy.ext.declarative import declarative_base
-#Base = declarative_base()
+from sqlalchemy.ext.declarative import declarative_base
+Base = declarative_base()
 
-material_event_table = None
-material_node_table = None
+#material_event_table = None
+#material_node_table = None
 
 def setup():
+    log.debug("In the setup...")
+    '''
     if material_event_table is None:
         define_tables()
 
@@ -34,13 +36,19 @@ def setup():
         if not material_node_table: #.exists() # Blows up
             log.debug("Creating material <-> node table.")
             material_node_table.create()
+
     '''
     if not TessMaterialEvent.__table__.exists():
         log.debug("Creating material <-> event table.")
         TessMaterialEvent.__table__.create()
-    '''
+
+    if not TessMaterialNode.__table__.exists():
+        log.debug("Creating material <-> node table.")
+        TessMaterialNode.__table__.create()
 
 
+
+'''
 def define_tables():
     log.debug("Defining tables")
     global material_event_table
@@ -82,15 +90,15 @@ class TessMaterialNode(TessRelation):
     pass
 
 '''
+
 class TessMaterialEvent(Base):
     __tablename__ = "materials_events"
-    id = Column('id',types.UnicodeText, primary_key=True, default=make_uuid),
+    id = Column(types.UnicodeText, primary_key=True, default=make_uuid)
     material_id = Column(types.UnicodeText, primary_key=u'')
     event_id = Column(types.UnicodeText, default=u'')
 
 class TessMaterialNode(Base):
     __tablename__ = "materials_nodes"
-    id = Column(types.UnicodeText, primary_key=True, default=make_uuid),
+    id = Column(types.UnicodeText, primary_key=True, default=make_uuid)
     material_id = Column(types.UnicodeText, default=u'')
     node_id = Column(types.UnicodeText, default=u'')
-'''
