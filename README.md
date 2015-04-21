@@ -23,6 +23,53 @@ In order to explain the confusing names for some of the fields, please refer to 
 | package            | dataset       | training material      |
 
 
+Here are the various keys in the new objects:
+
+| Object            | Primary Key | Other keys            |
+|-------------------|-------------|-----------------------|
+| TessMaterialNode  | id (auto)   | material_id, node_id  |
+| TessMaterialEvent | id (auto)   | material_id, event_id |
+| TessEvent         | id (auto)   | url                   |
+
+As for the existing tables which are referenced from this code, the schemas are:
+
+                     Table "public.group" (TessGroup)
+     Column      |            Type             |   Modifiers   
+-----------------|-----------------------------|---------------
+ id              | text                        | not null
+ name            | text                        | not null
+ title           | text                        | 
+ description     | text                        | 
+ created         | timestamp without time zone | 
+ state           | text                        | 
+ revision_id     | text                        | 
+ type            | text                        | not null
+ approval_status | text                        | 
+ image_url       | text                        | 
+ is_organization | boolean                     | default false
+
+                     Table "public.package" (TessDataset)
+      Column       |            Type             |   Modifiers   
+-------------------|-----------------------------|---------------
+ id                | text                        | not null
+ name              | character varying(100)      | not null
+ title             | text                        | 
+ version           | character varying(100)      | 
+ url               | text                        | 
+ notes             | text                        | 
+ license_id        | text                        | 
+ revision_id       | text                        | 
+ author            | text                        | 
+ author_email      | text                        | 
+ maintainer        | text                        | 
+ maintainer_email  | text                        | 
+ state             | text                        | 
+ type              | text                        | 
+ owner_org         | text                        | 
+ private           | boolean                     | default false
+ metadata_modified | timestamp without time zone | 
+ creator_user_id   | text                        | 
+
 ------------
 Installation
 ------------
