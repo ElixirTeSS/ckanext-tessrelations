@@ -5,7 +5,7 @@ import ckan.plugins.toolkit as toolkit
 
 
 from ckanext.tessrelations.model.tables import setup as model_setup
-from ckanext.tessrelations.model.tables import TessMaterialNode, TessMaterialEvent
+from ckanext.tessrelations.model.tables import TessMaterialNode, TessMaterialEvent, TessEvents, TessGroup, TessDomainObject, TessDataset
 
 log = logging.getLogger(__name__)
 

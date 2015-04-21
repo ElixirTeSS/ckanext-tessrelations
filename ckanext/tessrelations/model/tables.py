@@ -61,7 +61,7 @@ def define_tables():
 
     # First attempt at events, with minimal information.
     tess_event_table = Table('tess_events', metadata,
-                             Column('id',types.UnicodeText, primary_key=True),
+                             Column('id',types.UnicodeText, primary_key=True, default=make_uuid),
                              Column('url', types.UnicodeText, default=u''),
                              )
 
@@ -88,25 +88,44 @@ def define_tables():
 
 
 
-class TessRelation(DomainObject):
-    # This is a separate class from which the others inherit in case we need some
-    # stuff here (e.g. for searching) later.
+class TessDomainObject(DomainObject):
+    # Convenience methods for searching objects, ripped off
+    # from the original ckanext-harvest package.
+    key_attr = 'id'
+
+    @classmethod
+    def get(cls, key, default=None, attr=None):
+        '''Finds a single entity in the register.'''
+        if attr == None:
+            attr = cls.key_attr
+        kwds = {attr: key}
+        o = cls.filter(**kwds).first()
+        if o:
+            return o
+        else:
+            return default
+
+    @classmethod
+    def filter(cls, **kwds):
+        query = Session.query(cls).autoflush(False)
+        return query.filter_by(**kwds)
+
+
+
+class TessMaterialEvent(TessDomainObject):
     pass
 
-class TessMaterialEvent(TessRelation):
-    pass
-
-class TessMaterialNode(TessRelation):
+class TessMaterialNode(TessDomainObject):
     pass
 
 # Group table with group type set to 'node'
-class TessGroup(DomainObject):
+class TessGroup(TessDomainObject):
     pass
 
 # Event table
-class TessEvents(DomainObject):
+class TessEvents(TessDomainObject):
     pass
 
 # Datasets, i.e. training materials
-class TessDataset(DomainObject):
+class TessDataset(TessDomainObject):
     pass
