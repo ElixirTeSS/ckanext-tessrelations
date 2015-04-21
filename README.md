@@ -34,41 +34,41 @@ Here are the various keys in the new objects:
 As for the existing tables which are referenced from this code, the schemas are:
 
                      Table "public.group" (TessGroup)
-     Column      |            Type             |   Modifiers   
------------------|-----------------------------|---------------
- id              | text                        | not null
- name            | text                        | not null
- title           | text                        | 
- description     | text                        | 
- created         | timestamp without time zone | 
- state           | text                        | 
- revision_id     | text                        | 
- type            | text                        | not null
- approval_status | text                        | 
- image_url       | text                        | 
- is_organization | boolean                     | default false
+|     Column      |            Type             |   Modifiers   |
+|-----------------|-----------------------------|---------------|
+| id              | text                        | not null      |
+| name            | text                        | not null      |
+| title           | text                        |               | 
+| description     | text                        |               | 
+| created         | timestamp without time zone |               | 
+| state           | text                        |               | 
+| revision_id     | text                        |               | 
+| type            | text                        | not null      |
+| approval_status | text                        |               | 
+| image_url       | text                        |               | 
+| is_organization | boolean                     | default false |
 
                      Table "public.package" (TessDataset)
-      Column       |            Type             |   Modifiers   
--------------------|-----------------------------|---------------
- id                | text                        | not null
- name              | character varying(100)      | not null
- title             | text                        | 
- version           | character varying(100)      | 
- url               | text                        | 
- notes             | text                        | 
- license_id        | text                        | 
- revision_id       | text                        | 
- author            | text                        | 
- author_email      | text                        | 
- maintainer        | text                        | 
- maintainer_email  | text                        | 
- state             | text                        | 
- type              | text                        | 
- owner_org         | text                        | 
- private           | boolean                     | default false
- metadata_modified | timestamp without time zone | 
- creator_user_id   | text                        | 
+|      Column       |            Type             |   Modifiers   |
+|-------------------|-----------------------------|---------------|
+| id                | text                        | not null      |
+| name              | character varying(100)      | not null      |
+| title             | text                        |               | 
+| version           | character varying(100)      |               | 
+| url               | text                        |               |   
+| notes             | text                        |               |  
+| license_id        | text                        |               |  
+| revision_id       | text                        |               |  
+| author            | text                        |               |  
+| author_email      | text                        |               |  
+| maintainer        | text                        |               |  
+| maintainer_email  | text                        |               |  
+| state             | text                        |               |  
+| type              | text                        |               |  
+| owner_org         | text                        |               |  
+| private           | boolean                     | default false |
+| metadata_modified | timestamp without time zone |               |  
+| creator_user_id   | text                        |               |  
 
 ------------
 Installation
