@@ -61,16 +61,25 @@ def define_tables():
 
     # First attempt at events, with minimal information.
     tess_event_table = Table('tess_events', metadata,
-                             Column('id',types.UnicodeText, primary_key=True, default=make_uuid),
-                             Column('url', types.UnicodeText, default=u''),
-                             )
+                             Column('id',types.UnicodeText, primary_key=True),
+                             Column('title', types.UnicodeText, default=u''),
+                             Column('provider', types.UnicodeText, default=u''),
+                             Column('link', types.UnicodeText, default=u''),
+                             Column('subtitle', types.UnicodeText, default=u''),
+                             Column('venue', types.UnicodeText, default=u''),
+                             Column('country', types.UnicodeText, default=u''),
+                             Column('city', types.UnicodeText, default=u''),
+                             Column('starts', types.UnicodeText, default=u''),
+                             Column('ends', types.UnicodeText, default=u''),
+                             Column('duration', types.UnicodeText, default=u'')
+                            )
 
     mapper(TessEvents,tess_event_table)
 
     material_event_table = Table('material_event', metadata,
                                 Column('id',types.UnicodeText, primary_key=True, default=make_uuid),
                                 Column('material_id', types.UnicodeText, ForeignKey('package.id')),
-                                Column('event_id', types.UnicodeText, ForeignKey('tess_events.id')),
+                                Column('event_id', types.UnicodeText),
                             )
     # ForeignKey('harvest_object.id')
 
