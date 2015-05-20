@@ -40,6 +40,10 @@ def setup():
             log.debug("Creating material <-> node table.")
             material_node_table.create()
 
+        if not tess_workflow_table.exists():
+            log.debug("Creating workflows table.")
+            tess_workflow_table.create()
+
 
 
 
@@ -50,6 +54,7 @@ def define_tables():
     global tess_event_table
     global tess_dataset_table
     global tess_group_table
+    global tess_workflow_table
 
     # Attempt to gain access to the group table
     tess_group_table = Table('group',metadata,extend_existing=True)
@@ -58,6 +63,13 @@ def define_tables():
     tess_dataset_table = Table('package',metadata,extend_existing=True)
     mapper(TessDataset, tess_dataset_table)
 
+    tess_workflow_table = Table('tess_workflow', metadata,
+                             Column('id',types.UnicodeText, primary_key=True, default=make_uuid),
+                             Column('name',types.UnicodeText, default=u''),
+                             Column('description',types.UnicodeText, default=u''),
+                             Column('definition', types.UnicodeText, default=u'') # workflow definition in JSON format
+                             )
+    mapper(TessWorkflow,tess_workflow_table)
 
     # First attempt at events, with minimal information.
     tess_event_table = Table('tess_events', metadata,
@@ -119,7 +131,9 @@ class TessDomainObject(DomainObject):
         query = Session.query(cls).autoflush(False)
         return query.filter_by(**kwds)
 
-
+# Workflow model
+class TessWorkflow(TessDomainObject):
+    pass
 
 class TessMaterialEvent(TessDomainObject):
     pass
@@ -138,3 +152,5 @@ class TessEvents(TessDomainObject):
 # Datasets, i.e. training materials
 class TessDataset(TessDomainObject):
     pass
+
+
