@@ -3,7 +3,7 @@ __author__ = 'milo'
 
 import logging
 
-
+import datetime
 from sqlalchemy import Table
 from sqlalchemy import Column
 from sqlalchemy import types
@@ -66,9 +66,13 @@ def define_tables():
     tess_workflow_table = Table('tess_workflow', metadata,
                              Column('id',types.UnicodeText, primary_key=True, default=make_uuid),
                              Column('name',types.UnicodeText, default=u''),
-                             Column('description',types.UnicodeText, default=u''),
-                             Column('definition', types.UnicodeText, default=u'') # workflow definition in JSON format
-                             )
+                             Column('description', types.UnicodeText, default=u''),
+                             Column('definition', types.UnicodeText, default=u''), # workflow definition in JSON format
+                             Column('creator_user_id', types.UnicodeText, default=u''),
+                             Column('created', types.DateTime, default=datetime.datetime.utcnow),
+                             Column('last_modified', types.DateTime, default=datetime.datetime.utcnow)
+                            )
+
     mapper(TessWorkflow,tess_workflow_table)
 
     # First attempt at events, with minimal information.
