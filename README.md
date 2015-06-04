@@ -2,6 +2,8 @@
 ckanext-tessrelations
 =============
 
+OBSOLETE: Now merged into ckanext-tess.
+
 This extension adds several tables to CKAN and grants access via models to both those and some existing tables.
 
 The new tables, and their associated models, are:
